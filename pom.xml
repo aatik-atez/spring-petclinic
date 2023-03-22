@@ -271,6 +271,27 @@
       <id>css</id>
       <build>
         <plugins>
+        <plugin>
+              <groupId>com.spotify</groupId>
+              <artifactId>dockerfile-maven-plugin</artifactId>
+              <version>1.4.13</version>
+              <executions>
+                <execution>
+                  <id>default</id>
+                  <goals>
+                    <goal>build</goal>
+                    <goal>push</goal>
+                  </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <repository>spotify/foobar</repository>
+                <tag>${project.version}</tag>
+                <buildArgs>
+                  <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                </buildArgs>
+              </configuration>
+            </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -330,27 +351,7 @@
           <plugins>
             <!-- This plugin's configuration is used to store Eclipse m2e settings
    only. It has no influence on the Maven build itself. -->
-   <plugin>
-  <groupId>com.spotify</groupId>
-  <artifactId>dockerfile-maven-plugin</artifactId>
-  <version>1.4.13</version>
-  <executions>
-    <execution>
-      <id>default</id>
-      <goals>
-        <goal>build</goal>
-        <goal>push</goal>
-      </goals>
-    </execution>
-  </executions>
-  <configuration>
-    <repository>spotify/foobar</repository>
-    <tag>${project.version}</tag>
-    <buildArgs>
-      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-    </buildArgs>
-  </configuration>
-</plugin>
+            
             <plugin>
               <groupId>org.eclipse.m2e</groupId>
               <artifactId>lifecycle-mapping</artifactId>
