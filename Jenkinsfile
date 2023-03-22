@@ -1,12 +1,5 @@
 pipeline {
-    agent 
-     {
-         docker
-          {
-            //This exposes application through port 8081 to outside world
-            args '-u root -v /var/run/docker.sock:/var/run/docker.sock  '
-         }
-    }
+    agent any
 
     environment {
         SERVICE_NAME = 'spring-petclinic'
