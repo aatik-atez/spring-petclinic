@@ -1,18 +1,24 @@
-node {
-  stage("Clone the project") {
-    git branch: 'main', url: 'https://github.com/sukrucakmak/spring-petclinic.git'
-  }
+pipeline {
+    agent any
 
-  stage("Compilation") {
-    sh "./mvnw clean install -DskipTests"
-  }
-
-  stage("Tests and Deployment") {
-    stage("Runing unit tests") {
-      sh "./mvnw test -Punit"
+    environment {
+        SERVICE_NAME = 'spring-petclinic'
     }
-    stage("Deployment") {
-      sh 'nohup ./mvnw spring-boot:run -Dserver.port=8001 &'
+    stages {
+        stage('build') {
+    		environment {
+                MAVEN_IMAGE = 'maven:3.8.3-openjdk-17'
+    		}
+            steps {
+                script {
+                    docker {
+                        docker.image("${MAVEN_IMAGE}").withRun('-v $HOME/.m2:/root/.m2') {
+                            // artifacts are not versioned. using docker tags instead.
+                            sh 'mvn clean verify -B -U'
+                        }
+                    }
+                }
+            }
+        }
     }
-  }
 }
