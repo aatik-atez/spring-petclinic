@@ -38,7 +38,7 @@ pipeline {
                 script {
                          docker.image("${MAVEN_IMAGE}").withRun('-v $HOME/.m2:/root/.m2') {
                             // artifacts are not versioned. using docker tags instead.
-                            sh 'mvn -B -DTAG=demo-${env.BUILD_NUMBER} -DTAG_LATEST=snapshot dockerfile:build'
+                            sh 'mvn -B -DTAG=demo -DTAG_LATEST=snapshot dockerfile:build'
                         }
                 }
             }
