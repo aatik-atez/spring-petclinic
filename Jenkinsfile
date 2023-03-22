@@ -15,7 +15,7 @@ pipeline {
           
             steps {
                 script {
-                    docker.withServer('tcp://127.0.0.1:2345') {
+                    docker{
                          docker.image("${MAVEN_IMAGE}").withRun('-v $HOME/.m2:/root/.m2') {
                             // artifacts are not versioned. using docker tags instead.
                             sh 'mvn clean install -B -U'
