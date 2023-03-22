@@ -331,45 +331,25 @@
             <!-- This plugin's configuration is used to store Eclipse m2e settings
    only. It has no influence on the Maven build itself. -->
    <plugin>
-   <groupId>com.spotify</groupId>
-   <artifactId>dockerfile-maven-plugin</artifactId>
-   <version>1.4.0</version>
-   <executions>
-      <execution>
-         <id>default</id>
-         <phase>none</phase>
-         <goals>
-            <goal>build</goal>
-            <goal>tag</goal>
-            <goal>push</goal>
-         </goals>
-      </execution>
-      <execution>
-         <id>latest</id>
-         <phase>none</phase>
-         <goals>
-            <goal>tag</goal>
-            <goal>push</goal>
-         </goals>
-         <configuration>
-            <tag>${TAG_LATEST}</tag>
-         </configuration>
-      </execution>
-   </executions>
-   <configuration>
-      <tag>${TAG}</tag>
-      <repository>${docker-repository}</repository>
-      <buildArgs>
-         <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-      </buildArgs>
-   </configuration>
-   <dependencies>
-      <dependency>
-         <groupId>javax.activation</groupId>
-         <artifactId>activation</artifactId>
-         <version>1.1.1</version>
-      </dependency>
-   </dependencies>
+  <groupId>com.spotify</groupId>
+  <artifactId>dockerfile-maven-plugin</artifactId>
+  <version>1.4.13</version>
+  <executions>
+    <execution>
+      <id>default</id>
+      <goals>
+        <goal>build</goal>
+        <goal>push</goal>
+      </goals>
+    </execution>
+  </executions>
+  <configuration>
+    <repository>spotify/foobar</repository>
+    <tag>${project.version}</tag>
+    <buildArgs>
+      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+    </buildArgs>
+  </configuration>
 </plugin>
             <plugin>
               <groupId>org.eclipse.m2e</groupId>
