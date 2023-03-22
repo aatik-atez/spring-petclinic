@@ -116,27 +116,20 @@
 
   <build>
     <plugins>
-     <plugin>
-      <groupId>com.spotify</groupId>
-              <artifactId>dockerfile-maven-plugin</artifactId>
-              <version>1.4.13</version>
-              <executions>
+       <plugin>
+            <groupId>io.fabric8</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>0.38.1</version>
+            <executions>
                 <execution>
-                  <id>default</id>
-                  <goals>
-                    <goal>build</goal>
-                    <goal>push</goal>
-                  </goals>
+                    <id>build</id>
+                    <phase>pre-integration-test</phase>
+                    <goals>
+                        <goal>build</goal>
+                    </goals>
                 </execution>
-              </executions>
-              <configuration>
-                <repository>spotify/foobar</repository>
-                <tag>${project.version}</tag>
-                <buildArgs>
-                  <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                </buildArgs>
-              </configuration>
-            </plugin>
+            </executions>
+        </plugin> 
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
