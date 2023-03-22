@@ -116,6 +116,27 @@
 
   <build>
     <plugins>
+     <plugin>
+      <groupId>com.spotify</groupId>
+              <artifactId>dockerfile-maven-plugin</artifactId>
+              <version>1.4.13</version>
+              <executions>
+                <execution>
+                  <id>default</id>
+                  <goals>
+                    <goal>build</goal>
+                    <goal>push</goal>
+                  </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <repository>spotify/foobar</repository>
+                <tag>${project.version}</tag>
+                <buildArgs>
+                  <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                </buildArgs>
+              </configuration>
+            </plugin>
       <plugin>
         <groupId>io.spring.javaformat</groupId>
         <artifactId>spring-javaformat-maven-plugin</artifactId>
@@ -271,27 +292,7 @@
       <id>css</id>
       <build>
         <plugins>
-        <plugin>
-              <groupId>com.spotify</groupId>
-              <artifactId>dockerfile-maven-plugin</artifactId>
-              <version>1.4.13</version>
-              <executions>
-                <execution>
-                  <id>default</id>
-                  <goals>
-                    <goal>build</goal>
-                    <goal>push</goal>
-                  </goals>
-                </execution>
-              </executions>
-              <configuration>
-                <repository>spotify/foobar</repository>
-                <tag>${project.version}</tag>
-                <buildArgs>
-                  <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
-                </buildArgs>
-              </configuration>
-            </plugin>
+       
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
