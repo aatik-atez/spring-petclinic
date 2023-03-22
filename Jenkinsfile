@@ -9,6 +9,9 @@ pipeline {
             when {
                 branch 'main'
             }
+            environment{
+              MAVEN_IMAGE="maven:3.8.3-openjdk-17"
+            }
           
             steps {
                 script {
