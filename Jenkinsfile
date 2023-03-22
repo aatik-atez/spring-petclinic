@@ -1,10 +1,10 @@
 pipeline {
     agent any
-    tools{
-        maven="maven"
-    }
     environment {
         SERVICE_NAME = 'spring-petclinic'
+    }
+    tools{
+        maven "maven"
     }
     stages {
         stage('docker-master') {
