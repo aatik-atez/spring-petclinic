@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools{
+        maven="maven"
+    }
     environment {
         SERVICE_NAME = 'spring-petclinic'
     }
