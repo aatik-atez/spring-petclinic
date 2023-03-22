@@ -5,6 +5,7 @@ pipeline {
     }
     tools{
         maven "maven"
+        jdk "jdk-17.35"
     }
     stages {
         stage('docker-master') {
